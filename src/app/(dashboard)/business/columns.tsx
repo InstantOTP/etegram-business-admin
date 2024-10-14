@@ -135,7 +135,7 @@ export const requestSMSColumns: ColumnDef<Transaction>[] = [
   {
     id: 'actions',
     header: 'Action',
-    cell: ({ row }) => {
+    cell: function CellComponent({ row }) {
       const business = row.original;
       const { toast } = useToast();
 

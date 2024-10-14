@@ -10,11 +10,11 @@ export async function getUser() {
         next: { tags: ['user'] },
       });
 
-      const data = await response.text();
+      const data = await response.json();
       console.log(data);
 
       if (!response.ok) {
-        return { message: data };
+        return 'Failed to fetch User';
       }
       if (data === 'Unauthenticated: Invalid token') {
         // console.log('hello');
