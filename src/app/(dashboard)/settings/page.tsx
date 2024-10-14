@@ -6,7 +6,7 @@ import ServiceCharges from './tab-contents/service-charges';
 import { User } from '@/components/layouts/dashboard-header';
 
 export default async function SettingsPage() {
-  const user: User = await getUser();
+  const user: any = await getUser();
   return (
     <section className='w-full'>
       <Tabs
