@@ -12,7 +12,7 @@ export default async function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user: User = await getUser();
+  const user: any = await getUser();
   return (
     <ThemeProvider
       storageKey='theme'

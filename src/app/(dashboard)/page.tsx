@@ -15,11 +15,11 @@ import { User } from '@/components/layouts/dashboard-header';
 
 export default async function Home() {
   const profit = await getAllProfits();
-  const user: User = await getUser();
+  const user: any = await getUser();
   if (!user?.role?.permissions.includes('GETPROFITS')) {
     return (
       <section className=''>
-        <h1>Welcome to InstantOtp Dashboard</h1>
+        <h1>Welcome to Admin Dashboard</h1>
       </section>
     );
   }
