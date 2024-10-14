@@ -1,0 +1,278 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 13%;
+
+    --dashboard-background: 260 99% 43% / 0.03;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 13% / 0.6;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 260 99% 43%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 7% 1;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 260 99% 43% / 0.03;
+    --accent-foreground: 0 0% 13%;
+
+    --destructive: 0 100% 50% /0.07;
+    --destructive-foreground: 0 100% 35%;
+
+    --destructive-dark: 0 84.2% 60.2%;
+    --destructive-dark-foreground: 0 0% 98%;
+
+    --hamburger: 0 0% 0%;
+
+    --border: 260 99% 43% / 0.15;
+    --input: 260 99% 43% / 0.2;
+    --ring: 260 99% 43% /0.8;
+
+    --radius: 0.5rem;
+    --success: 142.1 76.2% 36.3%;
+    --success-foreground: 0 0% 100%;
+
+    --color-text: navy;
+    --color-bg: papayawhip;
+    --color-bg-accent: #ecdcc0;
+    --size: clamp(10rem, 1rem + 40vmin, 30rem);
+    --gap: calc(var(--size) / 14);
+    --duration: 60s;
+    --scroll-start: 0;
+    --scroll-end: calc(-100% - var(--gap));
+
+    --chart-1: 260 99% 43% / 0.7;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 240 17% 14%;
+    --foreground: 0 0% 100%;
+
+    --dashboard-background: 235 28% 9%;
+
+    --card: 240 17% 14%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 235 28% 9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 235 28% 9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --hamburger: 0 0% 100%;
+
+    --border: 0 0% 14.9%;
+    --input: 235 28% 9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+input,
+select,
+textarea {
+  font-size: 16px !important;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background font-manrope text-foreground/85 text-sm lg:text-lg;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-plus-jakarta-sans;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .styled-scrollbar::-webkit-scrollbar {
+    height: 3px;
+    width: 3px;
+  }
+  .styled-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #dedede;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    background: linear-gradient(
+      90deg,
+      rgba(72, 1, 219, 0.9) 0%,
+      rgba(101, 6, 129, 0.9) 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .white-gradient-left {
+    background: linear-gradient(
+      269deg,
+      rgba(255, 255, 255, 0.15) -3.48%,
+      #fff 49.35%,
+      #fff 99.07%
+    );
+  }
+
+  .white-gradient-right {
+    background: linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0.15) -3.48%,
+      #fff 49.35%,
+      #fff 99.07%
+    );
+  }
+
+  .section-accent {
+    @apply py-6 lg:py-24 bg-accent  flex justify-center items-center flex-col space-y-3 lg:space-y-7;
+  }
+
+  .section-white {
+    @apply py-6 lg:pt-28 container flex justify-center items-center flex-col space-y-3 lg:space-y-7;
+  }
+
+  .section-title {
+    @apply text-center lg:text-left text-gradient font-bold text-xl lg:text-4.5xl pb-2;
+  }
+
+  .section-subtitle {
+    @apply text-foreground text-center max-w-[871px];
+  }
+
+  .section-details-container {
+    @apply flex flex-col-reverse lg:flex-row justify-between gap-8 lg:gap-12;
+  }
+
+  .form-control {
+    @apply w-full space-y-[0.625rem];
+  }
+  .form-control label {
+    @apply text-sm lg:text-lg text-foreground font-medium;
+  }
+  .form-control .error {
+    @apply mt-2 text-red-500 text-sm;
+  }
+
+  /* DASHBOARD */
+  .section-grid {
+    @apply grid lg:grid-cols-12;
+  }
+  .card {
+    @apply min-h-10 rounded-[0.625rem] bg-background px-6 py-5 w-full;
+  }
+
+  .card-xl {
+    @apply card lg:col-span-8;
+  }
+  .card-lg {
+    @apply card lg:col-span-7;
+  }
+  .card-md {
+    @apply card lg:col-span-6;
+  }
+  .card-sm {
+    @apply card lg:col-span-5;
+  }
+  .card-xs {
+    @apply card lg:col-span-4;
+  }
+  .card-2xs {
+    @apply card lg:col-span-3;
+  }
+  .card-3xs {
+    @apply card lg:col-span-2;
+  }
+  .text-light {
+    @apply opacity-65;
+  }
+}
+
+/* CUSTOM STYLES */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+  mask-image: linear-gradient(
+    var(--mask-direction, to right),
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 20%,
+    hsl(0 0% 0% / 1) 80%,
+    hsl(0 0% 0% / 0)
+  );
+}
+
+.marquee__group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100%;
+  animation: scroll-x var(--duration) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__group {
+    animation-play-state: paused;
+  }
+}
+
+.marquee--reverse .marquee__group {
+  animation-direction: reverse;
+  animation-delay: -3s;
+}
+
+@keyframes scroll-x {
+  from {
+    transform: translateX(var(--scroll-start));
+  }
+  to {
+    transform: translateX(var(--scroll-end));
+  }
+}
+
+/* Hides default eye or clear button on mircosot edge */
+input::-ms-clear,
+input::-ms-reveal {
+  display: none;
+}
