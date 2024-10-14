@@ -62,7 +62,7 @@ export default function LoginForm() {
     <div className='bg-background rounded-xl py-6 px-5 lg:px-10 w-full max-w-[38.438rem] text-base'>
       <div className='max-w-[430px] mx-auto'>
         <h3 className='text-center font-manrope font-semibold text-foreground text-base lg:text-2xl mb-2'>
-          Welcome Back to instantotp
+          Welcome Back to Etegram Business Admin
         </h3>
 
         <p className='text-base text-center'>
