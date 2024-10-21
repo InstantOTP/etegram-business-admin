@@ -52,9 +52,9 @@ export const adminSidebarLinks = [
     links: [
       {
         icon: Airdrop,
-        label: 'Providers',
-        path: '/providers-management',
-        permission: 'GETPROVIDERS',
+        label: 'Use cases',
+        path: '/use-cases',
+        permission: 'All',
       },
       {
         icon: Cpu,

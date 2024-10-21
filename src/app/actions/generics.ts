@@ -2,7 +2,7 @@
 import { http } from './httpConfig';
 import { revalidateTag } from 'next/cache';
 import { PrevStateProps } from './auth';
-import { CreateIndustrySchema } from '@/lib/form-schema/auth';
+import { CreateIndustrySchema, UseCaseSchema } from '@/lib/form-schema/auth';
 // LOGOIT ACTION
 
 interface createIndustryState extends PrevStateProps {
@@ -88,6 +88,97 @@ export async function updateIndustry(
 export async function deleteIndustry(industryID: string) {
   try {
     const response = await http(`/industry`, {
+      method: 'DELETE',
+    });
+    // console.log(response);
+    const data = await response.json();
+
+    if (!response.ok) {
+      return { message: data?.message, status: 'failed' };
+    }
+    revalidateTag('industries');
+    return { message: 'Industry created', status: 'success' };
+  } catch (error: any) {
+    if (error) {
+    }
+  }
+}
+
+// *****************************USE CASES*************************************
+export async function createUseCase(
+  prevState: createIndustryState | undefined,
+  formData: FormData
+) {
+  const data = Object.fromEntries(formData.entries());
+  const validatedFields = UseCaseSchema.safeParse(data);
+
+  if (!validatedFields.success) {
+    return {
+      message: 'Missing fields. Login Failed.',
+      errors: validatedFields.error.flatten().fieldErrors,
+      status: 'failed',
+    };
+  }
+
+  //data to submit to database
+  const dataToSubmit = validatedFields.data;
+  try {
+    const response = await http(`/use-case`, {
+      method: 'POST',
+      body: JSON.stringify(dataToSubmit),
+    });
+    // console.log(response);
+    const data = await response.json();
+
+    if (!response.ok) {
+      return { ...prevState, message: data?.message, status: 'failed' };
+    }
+    revalidateTag('use-case');
+    return { ...prevState, message: 'Industry created', status: 'success' };
+  } catch (error: any) {
+    if (error) {
+    }
+  }
+}
+export async function updateUseCase(
+  prevState: createIndustryState | undefined,
+  formData: FormData
+) {
+  const data = Object.fromEntries(formData.entries());
+  const validatedFields = UseCaseSchema.safeParse(data);
+
+  if (!validatedFields.success) {
+    return {
+      message: 'Missing fields. Login Failed.',
+      errors: validatedFields.error.flatten().fieldErrors,
+      status: 'failed',
+    };
+  }
+
+  //data to submit to database
+  const dataToSubmit = validatedFields.data;
+  try {
+    const response = await http(`/industry`, {
+      method: 'PUT',
+      body: JSON.stringify(dataToSubmit),
+    });
+    // console.log(response);
+    const data = await response.json();
+
+    if (!response.ok) {
+      return { ...prevState, message: data?.message, status: 'failed' };
+    }
+    revalidateTag('use-case');
+    return { ...prevState, message: 'Industry created', status: 'success' };
+  } catch (error: any) {
+    if (error) {
+    }
+  }
+}
+
+export async function deleteUseCase(id: string) {
+  try {
+    const response = await http(`/use-case`, {
       method: 'DELETE',
     });
     // console.log(response);

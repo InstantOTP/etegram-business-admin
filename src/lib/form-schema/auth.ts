@@ -216,3 +216,8 @@ export const CreateIndustrySchema = z.object({
   name: z.string().min(1, { message: 'Industry is required' }),
   description: z.string(),
 });
+
+export const UseCaseSchema = z.object({
+  name: z.string().min(1, { message: 'Industry is required' }),
+  description: z.string(),
+});
