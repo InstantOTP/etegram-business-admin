@@ -11,6 +11,33 @@ export async function getAllIndustries() {
           tags: [`industries`],
         },
       });
+      // console.log(response);
+      const data = await response.json();
+      if (!response.ok) {
+        return { message: data };
+      }
+      return data;
+    } catch (error) {
+      if (error) {
+        console.log(error);
+        console.error(error);
+      }
+      return null;
+    }
+  }
+  return null;
+}
+
+export async function getAllUseCases() {
+  const { access_token } = await getTokens();
+
+  if (access_token) {
+    try {
+      const response = await http(`/use-case`, {
+        next: {
+          tags: [`use-case`],
+        },
+      });
       console.log(response);
       const data = await response.json();
       if (!response.ok) {
