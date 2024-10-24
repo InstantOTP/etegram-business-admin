@@ -23,6 +23,8 @@ import { updateBusiness } from '@/app/actions/business-management';
 import { industryType } from '../industries/page';
 import { IndustryModal } from '@/components/modals/generics/industries';
 import { useCasesType } from './page';
+import { UseCaseModal } from '@/components/modals/generics/useCases';
+import { UpdateStatus } from './update-status';
 // import { ViewUserModal } from './table-actions';
 
 export const useCaseColumns: ColumnDef<useCasesType>[] = [
@@ -92,41 +94,44 @@ export const useCaseColumns: ColumnDef<useCasesType>[] = [
       return <div className=''>{transaction_date}</div>;
     },
   },
-  //   {
-  //     id: 'actions',
-  //     header: 'Action',
-  //     cell: ({ row }) => {
-  //       const industry = row.original;
+  {
+    id: 'actions',
+    header: 'Action',
+    cell: ({ row }) => {
+      const useCase = row.original;
 
-  //       return (
-  //         <DropdownMenu>
-  //           <DropdownMenuTrigger asChild>
-  //             <Button
-  //               variant='ghost'
-  //               className='h-8 w-8 p-0'
-  //             >
-  //               <span className='sr-only'>Open menu</span>
-  //               <MoreVertical className='h-4 w-4' />
-  //             </Button>
-  //           </DropdownMenuTrigger>
-  //           <DropdownMenuContent
-  //             align='end'
-  //             className=''
-  //           >
-  //             <DropdownMenuItem>
-  //               <div className='flex space-x-3 py-3 px-3.5 font-inter !text-xs'>
-  //                 <Eye className='w-4 h-4' />
-  //                 <span>View Details</span>
-  //               </div>
-  //             </DropdownMenuItem>
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant='ghost'
+              className='h-8 w-8 p-0'
+            >
+              <span className='sr-only'>Open menu</span>
+              <MoreVertical className='h-4 w-4' />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align='end'
+            className=''
+          >
+            {/* <DropdownMenuItem>
+                <div className='flex space-x-3 py-3 px-3.5 font-inter !text-xs'>
+                  <Eye className='w-4 h-4' />
+                  <span>View Details</span>
+                </div>
+              </DropdownMenuItem> */}
 
-  //             <DropdownMenuItem asChild>
-  //               <IndustryModal industry={industry} />
-  //             </DropdownMenuItem>
-  //             {/* <UpdateStatus user={user} /> */}
-  //           </DropdownMenuContent>
-  //         </DropdownMenu>
-  //       );
-  //     },
-  //   },
+            <DropdownMenuItem asChild>
+              <UseCaseModal
+                useCase={useCase}
+                isEditing
+              />
+            </DropdownMenuItem>
+            <UpdateStatus useCase={useCase} />
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
+  },
 ];

@@ -20,7 +20,11 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { findUpper } from '@/lib/utils';
 import { Textarea } from '@/components/ui/textarea';
 import { updateProvider } from '@/app/actions/providers';
-import { createIndustry, createUseCase } from '@/app/actions/generics';
+import {
+  createIndustry,
+  createUseCase,
+  updateUseCase,
+} from '@/app/actions/generics';
 
 function SubmitButton({ isEditing }: { isEditing: boolean }) {
   const { pending } = useFormStatus();
@@ -43,18 +47,21 @@ function SubmitButton({ isEditing }: { isEditing: boolean }) {
 }
 
 export function UseCaseModal({
-  industry,
+  useCase,
   isEditing = false,
 }: {
-  industry?: { name: string; description: string; id: string };
+  useCase?: { name: string; description: string; id: string };
   isEditing?: boolean;
 }) {
-  const [state, dispatch] = useFormState(createUseCase, {
-    industryID: industry?.id,
-    message: '',
-    status: '',
-    errors: {},
-  });
+  const [state, dispatch] = useFormState(
+    isEditing ? updateUseCase : createUseCase,
+    {
+      id: useCase?.id,
+      message: '',
+      status: '',
+      errors: {},
+    }
+  );
   const [isOpen, setIsOpen] = useState(false);
   const { toast } = useToast();
 
@@ -109,7 +116,7 @@ export function UseCaseModal({
                   id='name'
                   name='name'
                   type='text'
-                  defaultValue={industry?.name}
+                  defaultValue={useCase?.name}
                   placeholder='Enter Name'
                 />
               </div>
@@ -137,7 +144,7 @@ export function UseCaseModal({
                 placeholder='Enter description'
                 id='description'
                 name='description'
-                defaultValue={industry?.description}
+                defaultValue={useCase?.description}
               />
             </div>
             {state?.errors?.description ? (
